@@ -1,0 +1,5 @@
+package mylib
+
+modules = bool, unit
+
+opts = "--nobasepkgs --noprelude --nobuiltins"
