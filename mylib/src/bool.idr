@@ -79,11 +79,11 @@ matching.
 -}
 public export
 bool_nand: Bool -> Bool -> Bool
+{-
 bool_nand True True = False
 bool_nand _ _ = True
-{-
-bool_nand b1 b2 = bool_not (bool_and b1 b2)
 -}
+bool_nand b1 b2 = bool_not (bool_and b1 b2)
 
 public export
 bool_xor: Bool -> Bool -> Bool
@@ -105,3 +105,39 @@ bool_equiv: Bool -> Bool -> Bool
 bool_equiv True True = True
 bool_equiv False False = True
 bool_equiv _ _ = False
+
+{-
+Next we introduce a special case of one of
+the most fundamental concepts in computing:
+that of conditional evaluation. The idea is
+that you're giving a condition in the form
+of a Boolean expression and then two possible
+results, each again given by an expression.
+If the condition evaluates to true the result
+is obtained by evaluating the first result
+expression, otherwise the result is obtained
+by evaluating the second expression. You can
+think of this graphically like this:
+
+              condition
+              /       \
+     if true /         \ if false
+            /           \
+       expression     expression
+
+We call such a construct a "conditional." To
+evaluate a conditional expression, you first
+evaluate the condition, then you return the
+result of evaluating either the expression for
+the "true branch" or for the "false branch"
+accordingly.
+
+We can build ourselves a capability to compute
+conditionally by defining a ternary function.
+Here we build the special case where the type
+of the return result is always Bool.
+-}
+
+bool_if_then_else: Bool -> Bool -> Bool -> Bool
+bool_if_then_else True t _ = t
+bool_if_then_else False _ f = f
