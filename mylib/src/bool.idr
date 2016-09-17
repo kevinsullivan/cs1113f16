@@ -7,11 +7,6 @@ public export
 bool_id: Bool -> Bool
 bool_id b = b
 
-{-
-bool_id True = True
-bool_id False = False
--}
-
 public export
 bool_not: Bool -> Bool
 bool_not True = False
@@ -79,10 +74,6 @@ matching.
 -}
 public export
 bool_nand: Bool -> Bool -> Bool
-{-
-bool_nand True True = False
-bool_nand _ _ = True
--}
 bool_nand b1 b2 = bool_not (bool_and b1 b2)
 
 public export
@@ -95,10 +86,6 @@ public export
 bool_implies: Bool -> Bool -> Bool
 bool_implies True False = False
 bool_implies _ _ = True
-{-
-bool_implies False _ = True
-bool_implies _ b = b
--}
 
 public export
 bool_equiv: Bool -> Bool -> Bool
