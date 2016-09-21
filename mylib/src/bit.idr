@@ -91,6 +91,7 @@ Now the big question: What operation of Boolean
 algebra does binary digit addition resemble?
 -}
 
+{-
 public export
 bit_plus: Bit -> Bit -> Bit
 bit_plus (MkBit b1) (MkBit b2) =
@@ -100,3 +101,4 @@ public export
 bit_carry: Bit -> Bit -> Bit
 bit_carry (MkBit b1) (MkBit b2) =
             MkBit (bool_and b1 b2)
+-}
