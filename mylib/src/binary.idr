@@ -48,28 +48,71 @@ digits of course are binary!
 ||| Compute the sum bit of three bits
 bit_plus3: Bit -> Bit -> Bit -> Bit
 bit_plus3 (MkBit b1) (MkBit b2) (MkBit cin) =
-  MkBit (?hole1 (bool_xor b1 b2) cin)
+  MkBit (bool_xor
+          (bool_xor b1 b2)
+          cin)
+
+-- Here are the steps in a top-down functional decomposition (refinement)
+{-
+  ?aBit1
+-}
+{-
+  MkBit ?aBool1
+-}
+{-
+  MkBit (bool_xor ?aBit1 ?aBit2)
+-}
+{-
+  MkBit (bool_xor (bool_xor b1 b2) cin)
+-}
 
 ||| Compute the carry bit of three bits
 bit_carry3: Bit -> Bit -> Bit -> Bit
 bit_carry3 (MkBit b1) (MkBit b2) (MkBit cin) =
   MkBit (bool_or
-          ?hole3
-          ?hole4)
+          (bool_and
+            cin
+            (bool_xor b1 b2))
+          (bool_and
+            b1
+            b2))
+
+-- Here are the steps in a top-down functional decomposition (refinement)
+{-
+  ?ABit3
+-}
+{-
+  MkBit ?aBool2
+-}
+{-
+  MkBit (bool_or ?aBool3 ?aBool4)
+-}
+{-
+  MkBit (bool_or
+          (bool_and ?aBit4 ?aBit5)
+          (bool_and ?aBit6 ?aBit7)))
+-}
+{-
+  MkBit (bool_or
+          (bool_and cin (bool_xor b1 b2)
+          (bool_and b1 b2)))
+-}
 
 ||| Implement a full adder!
+export
 full_adder: Bit -> Bit -> Bit -> Byte2
 full_adder b1 b2 cin =
-  MkByte2 (?hole5) (?hole6)
+  MkByte2
+    (bit_carry3 b1 b2 cin)
+    (bit_plus3 b1 b2 cin)
 
-
--- some test code, should be refactored into test file
-sum0: Byte2
-sum0 = full_adder B0 B0 B0
--- expect MkByte2 B0 B0
-
--- FILL IN THE REMAINING 6 TEST CASES HERE AND CHECK FOR CORRECT BEHAVIOR
-
-sum7: Byte2
-sum7 = full_adder B1 B1 B1
--- expect MkByte B1
+-- Here are the steps in a top-down functional decomposition (refinement)
+{-
+  ?AByte2a
+-}
+{-
+  MkByte2 ?aBit8 ?aBit9
+-}
+{-
+  MkByte2 (bit_carry3 b1 b2 cin) (bit_plus3 b1 b2 cin)
+-}

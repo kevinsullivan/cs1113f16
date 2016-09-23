@@ -1,6 +1,6 @@
 package mytests
 
-modules = boolTest, unitTest, byteTest
+modules = boolTest, unitTest, byteTest, binaryTest
 
 opts = "--nobasepkgs --noprelude --nobuiltins"
 

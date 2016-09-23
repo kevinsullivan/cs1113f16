@@ -1,5 +1,5 @@
 package mylib
 
-modules = unit, bool, bit, byte2, bin
+modules = unit, bool, bit, byte2, binary
 
 opts = "--nobasepkgs --noprelude --nobuiltins"
