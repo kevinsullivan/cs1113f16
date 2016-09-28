@@ -1,3 +1,4 @@
+||| Abstract data type representing two-bit byte
 module byte2
 
 {-
@@ -18,11 +19,14 @@ the left bit as "bit one." We also call them
 the "low order" (b0, right) and "high-order"
 bit (b1, left).
 -}
+
 public export
-data Byte2 = MkByte2 Bit Bit
+data Byte2 =
+  ||| Constructor that boxes two Bit values into a Byte2 value
+  MkByte2 Bit Bit
 
 {-
-Now we meet a very important idea: a pattern
+Now we see again an important idea: a pattern
 can "pull apart a term/value and bind names to
 its parts." The next two functions use this idea
 to pull apart a byte, revealing its constitutent
@@ -30,10 +34,13 @@ bits, in order to return its bit zero and bit one
 components. We call such a function a "projection
 function," an "accessor," or an "inspector."
 -}
-public export
+
+||| Projection function returning low-order bit of a Byte2
+export
 byte2_b0: Byte2 -> Bit
 byte2_b0 (MkByte2 b1 b0) = b0
 
-public export
+||| Projection function returning high-order bit of a Byte2
+export
 byte2_b1: Byte2 -> Bit
 byte2_b1 (MkByte2 b1 b0) = b1

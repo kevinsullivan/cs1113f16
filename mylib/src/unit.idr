@@ -1,8 +1,13 @@
+||| Abstract data type simulating algebra with one value
+||| and the identity function.
 module unit
 
-public export
-data Unit = MkUnit
+export
+data Unit =
+  ||| The single term of type Unit
+  MkUnit
 
-public export
+||| The identity function on type Unit
+export
 unit_id: Unit -> Unit
 unit_id MkUnit = MkUnit

@@ -1,4 +1,8 @@
-import bool
+||| Abstract data type representing binary arithmetic
+module bit
+
+-- Client of this module will need bool as well
+import public bool
 
 {-
 In this module we're going to interpret Boolean
@@ -27,8 +31,10 @@ of other types. Here we define a Bit
 represent zero and one as False and
 True.
 -}
-public export
-data Bit = MkBit Bool
+export
+data Bit =
+  ||| Construct a term of type Bit by "boxing up" a Bool
+  MkBit Bool
 
 {-
 MkBit is analogous to MkUnit, True,
@@ -57,6 +63,8 @@ this case a value of type Bool) by
 matching. Check it out.
 -}
 
+||| Return the concrete representation (unbox and return the Bool)
+-- Unbox the given Bit by unifying it with the pattern, (MkBit b).
 bit_rep: Bit -> Bool
 bit_rep (MkBit b) = b
 
@@ -66,39 +74,13 @@ values, B0 and B1, available to any code
 that imports this module. We think of B0
 as the binary digit 0 and B1 as 1.
 -}
-public export
+
+||| Represents constant bit value 0
+export
 B0: Bit
 B0 = MkBit False
 
-public export
+||| Represents constant bit value 1
+export
 B1: Bit
 B1 = MkBit True
-
-{-
-We've now got representations of the binary
-digits, zero and one. So let's talk about
-addition. Here's a simple table:
-
-bit_add B0 B0 = B0
-bit_add B0 B1 = B1
-bit_add B1 B0 = B1
-bit_add B1 B1 = B0
-
-Note well: The last line says 1 + 1 = 0, and
-that is a true statement in arithmetic mod 2!
-
-Now the big question: What operation of Boolean
-algebra does binary digit addition resemble?
--}
-
-{-
-public export
-bit_plus: Bit -> Bit -> Bit
-bit_plus (MkBit b1) (MkBit b2) =
-            MkBit (bool_xor b1 b2)
-
-public export
-bit_carry: Bit -> Bit -> Bit
-bit_carry (MkBit b1) (MkBit b2) =
-            MkBit (bool_and b1 b2)
--}

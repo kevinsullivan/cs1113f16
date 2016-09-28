@@ -1,31 +1,46 @@
+||| Abstract data type simulating Boolean algebra
 module bool
 
 public export
-data Bool = True | False
+data Bool =
+  ||| Term representing Boolean true
+  True |
+  ||| Term representing Boolean false
+  False
 
+-- Unary functions
+
+||| Representation of identity function on Boolean values
 public export
 bool_id: Bool -> Bool
 bool_id b = b
 
+||| Representation of negation function on Boolean values
 public export
 bool_not: Bool -> Bool
 bool_not True = False
 bool_not _ = True
 
+||| Representation of constant true function of one Bool
 public export
 bool_true: Bool -> Bool
 bool_true _ = True
 
+||| Representation of constant false function of one Bool
 public export
 bool_false: Bool -> Bool
 bool_false _ = False
 
+
+-- Binary functions
+
 {-
-Next for the first time we meet
-a "binary" function, Boolean "and."
-The rules for evaluating this function
-are simply the truth table for "and."
+The rules for evaluating these functions are
+either direct, or more compact, translations
+of their truth tables.
 -}
+
+||| Representation of Boolean "and" function
 public export
 bool_and: Bool -> Bool -> Bool
 bool_and True True = True
@@ -46,6 +61,8 @@ Idris tries to match rules from the
 top down, and it applies the first
 rule that matches.
 -}
+
+||| Representation of Boolean "or" function
 public export
 bool_or: Bool -> Bool -> Bool
 bool_or False False = False
@@ -72,21 +89,26 @@ parts of the function application expression,
 context of the bindings established by pattern
 matching.
 -}
+
+||| Representation of Boolean "nand" function
 public export
 bool_nand: Bool -> Bool -> Bool
 bool_nand b1 b2 = bool_not (bool_and b1 b2)
 
+||| Representation of Boolean "xor" function
 public export
 bool_xor: Bool -> Bool -> Bool
 bool_xor True True = False
 bool_xor False False = False
 bool_xor _ _ = True
 
+||| Representation of the Boolean implies function
 public export
 bool_implies: Bool -> Bool -> Bool
 bool_implies True False = False
 bool_implies _ _ = True
 
+||| Representation of the Boolean equiv function
 public export
 bool_equiv: Bool -> Bool -> Bool
 bool_equiv True True = True
@@ -125,6 +147,27 @@ Here we build the special case where the type
 of the return result is always Bool.
 -}
 
+||| Representation of if-then-else returning a Bool
 bool_if_then_else: Bool -> Bool -> Bool -> Bool
 bool_if_then_else True t _ = t
 bool_if_then_else False _ f = f
+
+-- Theorems and proofs (okay, not this semester, but here's
+-- a tiny taste).
+
+{-
+Here it'd be great to check to see that our data type
+really does simulate properties of "The Booleans." For
+example, we might want to check that the following is
+true: if b is any value of type Bool, then (bool_equiv
+b (bool_not (bool_not b))) is true.
+-}
+
+{-
+||| Theorem: bool_not repeated cancels out
+doubleNeg: (b: Bool) ->
+            (bool_equiv
+              (bool_not (bool_not b))
+              b) = true
+doubleNeg = ?dnProof
+-}

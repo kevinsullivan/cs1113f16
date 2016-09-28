@@ -1,12 +1,12 @@
 ||| A library of functions for binary arithmetic
 module binary
 
-import bool   --
 import bit
 import byte2
 
 ||| Compute the sum bit of two bits
-public export
+-- Notice that we're forgetting to say "representation of ..."
+export
 bit_plus: Bit -> Bit -> Bit
 bit_plus (MkBit b1) (MkBit b2) =
               MkBit (bool_xor b1 b2)
@@ -14,13 +14,13 @@ bit_plus (MkBit b1) (MkBit b2) =
 -- representation of Bit. You can see it used here!
 
 ||| Compute the carry bit of two bits
-public export
+export
 bit_carry: Bit -> Bit -> Bit
 bit_carry (MkBit b1) (MkBit b2) =
             MkBit (bool_and b1 b2)
 
 ||| Implementation of a half-adder!
-public export
+export
 half_adder: Bit -> Bit -> Byte2
 half_adder b1 b0 =
   MkByte2
