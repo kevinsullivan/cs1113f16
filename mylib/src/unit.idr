@@ -2,12 +2,18 @@
 ||| and the identity function.
 module unit
 
+||| The type with only one value
 export
 data Unit =
   ||| The single term of type Unit
   MkUnit
 
-||| The identity function on type Unit
+||| Give a non-constructor name to the only value of this type
+export
+void: Unit
+void = MkUnit
+
+||| Ths function simulates the identity function on the Unit type
 export
 unit_id: Unit -> Unit
 unit_id MkUnit = MkUnit
