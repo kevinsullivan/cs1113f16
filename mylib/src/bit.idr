@@ -59,12 +59,14 @@ bit_carry (MkBit b1) (MkBit b2) =
 
 --- and also, correspondingly, this consider
 ||| Compute the sum bit of three bits
+export
 bit_plus3: Bit -> Bit -> Bit -> Bit
 bit_plus3 (MkBit b1) (MkBit b2) (MkBit cin) =
   MkBit (bool_xor (bool_xor b1 b2) cin)
 
 
 ||| Compute the carry bit of three bits
+export
 bit_carry3: Bit -> Bit -> Bit -> Bit
 bit_carry3 (MkBit b1) (MkBit b2) (MkBit cin) =
   MkBit (bool_or
