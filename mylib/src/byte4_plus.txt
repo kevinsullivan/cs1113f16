@@ -72,28 +72,28 @@ sum_sub n b1 b0 =
 
 ========
 
-It's extremely important to grasp that we can simply assume that we have the
-lower-level functions that we need. We assume them, stub them out, and then use
-them as if they were fully implemented. We go back and fill in the hole later.
-In this way, we maintain intellectual clarity and control and indeed simplicity
-at each level of refinement of our top-level function. The stub code for our
-present problem looks like this.
+It's important to grasp that when applying the method of top-down functional
+decomposition, can simply assume that we have the lower-level functions that
+we need ("wish we had") to make our code easy to write and understand. We go
+back and fill in the hole later. In this way, we maintain clarity and control
+at each level of decomposition. Here's the stub code for our present problem.
+
+========
+
+||| Return the indexed bit of the given byte or B0 if the index is out of range
+export
+byte4_sub: Nat -> Byte4 -> Bit
+byte4_sub n b4 = ?byte4_sub_hole
+-- this function is stubbed out; the hole must be filled!
 
 
+||| Return the carry bit in the indexed column when adding the two bytes
+||| or the zero bit (B0) if the index is out of range
+carry_sub: Nat -> Byte4 -> Byte4 -> Bit
+carry_sub n b1 b0 = ?carry_sub_hole
+-- this function is stubbed out; the hole must be filled!
 
+========
 
-We can of
-course use the same approach of writing the implementation in terms of other
-functions that we "wish" we had! When constructing an implementation of the
-byte4_plus function, for example, we "wished" for (i.e., we made a decision
-to organize our software "design" using) a sum_sub function that computes
-the indexed bit in the solution, the sum, that we need to compute.
-
-Now all we have to do is resolve the remaining holes, starting with sum_sub.
-You can see code, as described here, that type checks, on my github account,
-under tag v4.1
-
-
- the most high-level of
-which is the one serving as a place-holder for an implementation of the sub_sub
-function.
+Now all we have to do is resolve the remaining holes. You can find working code
+as described here in my github repo, under tag v4.1

@@ -91,6 +91,11 @@ nat_evenb Z = True
 nat_evenb (S Z) = False
 nat_evenb (S (S n)) = nat_evenb n
 
+||| Natural number equality
+export
+nat_eq: Nat -> Nat -> Bool
+nat_eq n m = ?nat_eq_hole
+
 
 ||| Compute the product of two nats
 export nat_mult: Nat -> Nat -> Nat
