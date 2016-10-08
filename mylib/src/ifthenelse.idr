@@ -46,23 +46,10 @@ Idris language: in Idris, types are themselves values. When a function
 takes and uses a type as a value, we call it polymorphic in that type.
 A function can have several arguments, several of which could be types,
 and so a function can be polymorphic in several different types.
-
-
-
-function types, where each one takes a Bool (the branch condition)
-and two values, each of some other type, T, and that then returns one
-of those values: the first if the Boolean condition evaluates to True
-and the second otherwise. This ifthenelse function always returns a
-value of whatever type T designates. The value of T can be any of a
-large number of other types, including Unit, Bool, Byte4, Nat, etc.
 -}
 
 ||| If-then-else returning a value of the specified type
 export
 ifthenelse: (T: Type) -> Bool -> T -> T -> T
-ifthenelse ty br tb fb  = ?ifthenelse_hole
-
-{-
-ifthenelse Typ True tbranch _ = tbranch
-ifthenelse Typ False _ fbranch = fbranch
--}
+ifthenelse ty True tbranch _ = tbranch
+ifthenelse ty False _ fbranch = fbranch
