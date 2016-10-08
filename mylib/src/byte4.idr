@@ -132,8 +132,15 @@ detail when we go to implement ifthenelse.
 ||| Return the carry bit in the indexed column when adding the two bytes
 ||| or the zero bit (B0) if the index is out of range
 carry_sub: Nat -> Byte4 -> Byte4 -> Bit
-carry_sub n b1 b0 = ?carry_sub_hole
--- this function is stubbed out; the hole must be filled!
+carry_sub n b1 b0 =
+  ifthenelse
+    Bit
+    (nat_eq n nat_zero)
+    (B0)
+    (bit_carry3
+     (carry_sub (nat_pred n) b1 b0)
+     (byte4_sub (nat_pred n) b1)
+     (byte4_sub (nat_pred n) b0))
 
 
 ||| Return the indexed bit of the sum of the given bytes
