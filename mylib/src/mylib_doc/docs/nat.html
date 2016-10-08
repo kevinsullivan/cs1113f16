@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html><head><title>IdrisDoc: nat</title><link type="text/css" rel="stylesheet" href="../styles.css"></head><body class="namespace"><div class="wrapper"><header><strong>IdrisDoc</strong>: nat<nav><a href="../index.html">Index</a></nav></header><div class="container"><h1>nat</h1><p>An abstract data type, nat, simulating<br />
+the natural numbers and common arithmetic<br />
+operations involving natural numbers</p>
+<dl class="decls"><dt id="nat.nat_zero"><span class="name function" title="nat.nat_zero">nat_zero</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a></span></dt><dd><p>The Nat representing zero</p>
+</dd><dt id="nat.nat_two"><span class="name function" title="nat.nat_two">nat_two</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a></span></dt><dd><p>And this one's two</p>
+</dd><dt id="nat.nat_three"><span class="name function" title="nat.nat_three">nat_three</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a></span></dt><dd><p>And three</p>
+</dd><dt id="nat.nat_succ"><span class="name function" title="nat.nat_succ">nat_succ</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a> ->
+<a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a></span></dt><dd><p>Return the (Nat representing the) successor of a given Nat</p>
+</dd><dt id="nat.nat_pred"><span class="name function" title="nat.nat_pred">nat_pred</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a> ->
+<a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a></span></dt><dd><p>Compute the predecessor of a given nat (with pred zero = zero)</p>
+</dd><dt id="nat.nat_plus"><span class="name function" title="nat.nat_plus">nat_plus</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a> ->
+<a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a> ->
+<a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a></span></dt><dd><p>Implement a function for computing the sum of two nats</p>
+</dd><dt id="nat.nat_one"><span class="name function" title="nat.nat_one">nat_one</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a></span></dt><dd><p>The one representing one</p>
+</dd><dt id="nat.nat_mult"><span class="name function" title="nat.nat_mult">nat_mult</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a> ->
+<a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a> ->
+<a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a></span></dt><dd><p>Compute the product of two nats</p>
+</dd><dt id="nat.nat_minus"><span class="name function" title="nat.nat_minus">nat_minus</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a> ->
+<a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a> ->
+<a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a></span></dt><dd><p>Subtraction</p>
+</dd><dt id="nat.nat_id"><span class="name function" title="nat.nat_id">nat_id</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a> ->
+<a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a></span></dt><dd><p>The identity function for values of type Nat</p>
+</dd><dt id="nat.nat_fact"><span class="name function" title="nat.nat_fact">nat_fact</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a> ->
+<a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a></span></dt><dd><p>Return the factorial of a given nat<br />
+Recall: if n = 0, n! = 1 and if n &gt; 0, n! = n * (n-1)!</p>
+</dd><dt id="nat.nat_evenb"><span class="name function" title="nat.nat_evenb">nat_evenb</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a> ->
+<a class="type" title="bool.Bool" href="bool.html#bool.Bool">Bool</a></span></dt><dd><p>Return true if a given nat is even otherwise false</p>
+</dd><dt id="nat.nat_eq"><span class="name function" title="nat.nat_eq">nat_eq</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a> ->
+<a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a> ->
+<a class="type" title="bool.Bool" href="bool.html#bool.Bool">Bool</a></span></dt><dd><p>Boolean equality for natural numbers</p>
+</dd><dt id="nat.Nat"><span class="word">data&nbsp;</span><span class="name type" title="nat.Nat">Nat</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><span class="type" title="Type">Type</span></span></dt><dd><p>The primary data type we export is Nat.<br />
+The constructors themselves are private.</p>
+<dl class="decls"><dt id="nat.Z"><span class="name constructor" title="nat.Z">Z</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a></span></dt><dd><p>Z constructs a representation of zero</p>
+</dd><dt id="nat.S"><span class="name constructor" title="nat.S">S</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a> ->
+<a class="type" title="nat.Nat" href="nat.html#nat.Nat">Nat</a></span></dt><dd><p>S n constructs a representation of the successor of n</p>
+</dd></dl></dd></dl></div></div><footer>Produced by IdrisDoc version 1.0</footer></body></html>

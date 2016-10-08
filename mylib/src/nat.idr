@@ -13,8 +13,8 @@ import public bool
 export
 data Nat =
   ||| Z constructs a representation of zero
-  Z |  ||| Z constructs a representation of the successor
-  ||| of the given natural number
+  Z |
+  ||| S n constructs a representation of the successor of n
   S Nat
 
 -- Values and functions
@@ -26,13 +26,21 @@ nat_zero = Z
 
 
 ||| The one representing one
-export nat_one: Nat
+export
+nat_one: Nat
 nat_one = S Z
 
 
 ||| And this one's two
-export nat_two: Nat
+export
+nat_two: Nat
 nat_two = S nat_one
+
+
+||| And three
+export
+nat_three: Nat
+nat_three = S nat_two
 
 
 ||| The identity function for values of type Nat
@@ -49,6 +57,7 @@ nat_succ n = S n
 -- Oh, Huge Yay, and Finally: Arithmetic!
 
 ||| Compute the predecessor of a given nat (with pred zero = zero)
+export
 nat_pred: Nat -> Nat
 nat_pred Z = Z
 nat_pred (S n) = n
@@ -57,17 +66,30 @@ nat_pred (S n) = n
 ||| Implement a function for computing the sum of two nats
 export
 nat_plus: Nat -> Nat -> Nat
-nat_plus Z m = m
+nat_plus Z n = n
 nat_plus (S n) m = S (nat_plus n m)
+
+{-
+nat_plus (S (S Z)) (S (S (S Z)))
+S (nat_plus (S Z) (S (S (S Z))))
+S (S (nat_plus Z (S (S (S Z)))))
+S (S (S (S (S Z))))
+-}
+
+||| Subtraction
+export
+nat_minus: Nat -> Nat -> Nat
+nat_minus Z m = Z
+nat_minus m Z = m
+nat_minus (S m) (S n) = nat_minus m n
 
 
 ||| Return true if a given nat is even otherwise false
+export
 nat_evenb: Nat -> Bool
 nat_evenb Z = True
 nat_evenb (S Z) = False
 nat_evenb (S (S n)) = nat_evenb n
-
-||| Subtraction
 
 
 ||| Compute the product of two nats

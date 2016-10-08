@@ -8,6 +8,8 @@ Note that this is a comment. You cannot attach inline
 documentation to an import directive.
 -}
 import public bit
+import public nat
+import ifthenelse
 
 ||| A two-bit byte type; constructor is private
 export
@@ -92,3 +94,44 @@ byte4_plus (MkByte4 b13 b12 b11 b10) (MkByte4 b03 b02 b01 b00) =
     (bit_plus
       b10
       b00)
+
+-- A better implementation
+
+||| Return the indexed bit of the given byte or B0 if the index is out of range
+export
+byte4_sub: Nat -> Byte4 -> Bit
+byte4_sub n b4 = ?byte4_sub_hole
+-- this function is stubbed out; the hole must be filled!
+
+
+||| Return the carry bit in the indexed column when adding the two bytes
+||| or the zero bit (B0) if the index is out of range
+carry_sub: Nat -> Byte4 -> Byte4 -> Bit
+carry_sub n b1 b0 = ?carry_sub_hole
+-- this function is stubbed out; the hole must be filled!
+
+
+||| Return the indexed bit of the sum of the given bytes
+sum_sub: Nat -> Byte4 -> Byte4 -> Bit
+sum_sub n b1 b0 =
+  bit_plus3
+    (carry_sub n b1 b0)
+    (byte4_sub n b1)
+    (byte4_sub n b0)
+
+
+||| Return the sum of two 4-bit bytes as a 4-bit byte ignoring overflows
+export
+byte4_plus': Byte4 -> Byte4 -> Byte4
+byte4_plus' b0 b1 =
+  byte4_new
+    (sum_sub nat_three b1 b0)
+    (sum_sub nat_two   b1 b0)
+    (sum_sub nat_one   b1 b0)
+    (sum_sub nat_zero  b1 b0)
+
+
+-- a little test case
+n: Byte4
+n = byte4_plus' byte4_ones byte4_ones
+-- expect 1110
