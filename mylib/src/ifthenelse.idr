@@ -50,6 +50,6 @@ and so a function can be polymorphic in several different types.
 
 ||| If-then-else returning a value of the specified type
 export
-ifthenelse: (T: Type) -> Bool -> T -> T -> T
-ifthenelse ty True tbranch _ = tbranch
-ifthenelse ty False _ fbranch = fbranch
+ifthenelse: { t: Type } -> Bool -> t -> t -> t
+ifthenelse True tbranch _ = tbranch
+ifthenelse False _ fbranch = fbranch

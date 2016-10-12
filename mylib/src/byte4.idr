@@ -73,7 +73,8 @@ byte4_plus (MkByte4 b13 b12 b11 b10) (MkByte4 b03 b02 b01 b00) =
         (bit_carry3
           b11
           b01
-          (bit_carry
+          (bit_carry3
+            B0
             b10
             b00))))
     (bit_plus3
@@ -91,7 +92,8 @@ byte4_plus (MkByte4 b13 b12 b11 b10) (MkByte4 b03 b02 b01 b00) =
       (bit_carry
         b10
         b00))
-    (bit_plus
+    (bit_plus3
+      B0
       b10
       b00)
 
@@ -102,31 +104,18 @@ export
 byte4_sub: Nat -> Byte4 -> Bit
 byte4_sub index aByte4 =
   ifthenelse
-    Bit
     (nat_eq index nat_zero)
     (byte4_bit0 aByte4)
     (ifthenelse
-      Bit
       (nat_eq index nat_one)
       (byte4_bit1 aByte4)
       (ifthenelse
-        Bit
         (nat_eq index nat_two)
         (byte4_bit2 aByte4)
         (ifthenelse
-          Bit
           (nat_eq index nat_three)
           (byte4_bit3 aByte4)
           (B0))))
-{-
-This implementation presupposes that we have to additional functions
-that we haven't yet seen in their full genality: bool_eq, taking two
-Bools and returning true if they're equal (bool_equiv) otherwise false;
-and ifthenelse. The type of ifthenelse involves a concept that we will
-see here for the first time, namely polymorphism. We'll get to it in
-detail when we go to implement ifthenelse.
--}
-
 
 
 ||| Return the carry bit in the indexed column when adding the two bytes
@@ -134,7 +123,6 @@ detail when we go to implement ifthenelse.
 carry_sub: Nat -> Byte4 -> Byte4 -> Bit
 carry_sub n b1 b0 =
   ifthenelse
-    Bit
     (nat_eq n nat_zero)
     (B0)
     (bit_carry3

@@ -95,7 +95,7 @@ nat_evenb (S (S n)) = nat_evenb n
 export
 nat_eq: Nat -> Nat -> Bool
 nat_eq Z Z = True
-nat_eq Z (S m) = False
+nat_eq Z (S n) = False
 nat_eq (S n) Z = False
 nat_eq (S n) (S m) = nat_eq n m
 
