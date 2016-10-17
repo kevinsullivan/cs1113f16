@@ -69,12 +69,6 @@ nat_plus: Nat -> Nat -> Nat
 nat_plus Z n = n
 nat_plus (S n) m = S (nat_plus n m)
 
-{-
-nat_plus (S (S Z)) (S (S (S Z)))
-S (nat_plus (S Z) (S (S (S Z))))
-S (S (nat_plus Z (S (S (S Z)))))
-S (S (S (S (S Z))))
--}
 
 ||| Subtraction
 export
@@ -112,18 +106,3 @@ export
 nat_fact: Nat -> Nat
 nat_fact Z = nat_succ nat_zero
 nat_fact (S n) = nat_mult (S n) (nat_fact n)
-
-
--- And some code to test it all out
-
-nat4: Nat
-nat4 = nat_plus Z Z
-
-nat5: Nat
-nat5 = nat_plus Z (S (S Z))
-
-nat6: Nat
-nat6 = nat_plus (S (S Z)) Z
-
-nat7: Nat
-nat7 = nat_plus (S (S Z)) (S (S Z))
