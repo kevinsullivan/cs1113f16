@@ -21,3 +21,11 @@ ln3 = Cons nat_three ln2
 -- Another example, fully expanded
 lb4: List Bool
 lb4 = Cons (True) (Cons False (Cons (True) (Cons False Nil)))
+
+-- Filter test
+ln4: List Nat
+ln4 = list_filter nat_evenb ln3
+
+-- Map test
+ln5: List Nat
+ln5 = list_map nat_succ ln3
