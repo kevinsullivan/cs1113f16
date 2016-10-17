@@ -57,6 +57,16 @@ export
 byte4_bit3: Byte4 -> Bit
 byte4_bit3 (MkByte4 b3 b2 b1 b0) = b3
 
+byte4_eq: Byte4 -> Byte4 -> Bool
+byte4_eq (MkByte4 b13 b12 b11 b10) (MkByte4 b03 b02 b01 b00) =
+  bool_and
+    (bit_eq b13 b03)
+    (bool_and
+      (bit_eq b12 b02)
+      (bool_and
+        (bit_eq b11 b01)
+        (bit_eq b10 b00)))
+
 
 -- arithmetic functions on 4-bit bytes
 

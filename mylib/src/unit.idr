@@ -2,6 +2,8 @@
 ||| and the identity function.
 module unit
 
+import public bool
+
 ||| The type with only one value
 export
 data Unit =
@@ -17,3 +19,7 @@ void = MkUnit
 export
 unit_id: Unit -> Unit
 unit_id MkUnit = MkUnit
+
+||| Unit equality
+unit_eq: Unit -> Unit -> Bool
+unit_eq u1 u2 = True

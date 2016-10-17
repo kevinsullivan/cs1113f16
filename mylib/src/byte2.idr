@@ -8,6 +8,7 @@ Note that this is a comment. You cannot attach inline
 documentation to an import directive.
 -}
 import public bit
+import public bool
 
 ||| A two-bit byte type; constructor is private
 export
@@ -32,3 +33,8 @@ byte2_b0 (MkByte2 b1 b0) = b0
 export
 byte2_b1: Byte2 -> Bit
 byte2_b1 (MkByte2 b1 b0) = b1
+
+||| 2-bit byte equality
+byte2_eq: Byte2 -> Byte2 -> Bool
+byte2_eq (MkByte2 bit11 bit10) (MkByte2 bit01 bit00) =
+  bool_and (bit_eq bit11 bit01) (bit_eq bit10 bit00)

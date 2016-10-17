@@ -44,7 +44,6 @@ export
 bool_false: Bool -> Bool
 bool_false _ = False
 
-
 -- Binary functions
 
 ||| Representation of Boolean "and" function
@@ -90,6 +89,11 @@ bool_equiv: Bool -> Bool -> Bool
 bool_equiv True True = True
 bool_equiv False False = True
 bool_equiv _ _ = False
+
+||| Boolean equality
+export
+bool_eq: Bool -> Bool -> Bool
+bool_eq b1 b2 = bool_equiv b1 b2
 
 
 ||| Representation of if-then-else returning a Bool

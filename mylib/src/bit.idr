@@ -42,13 +42,18 @@ B1 = MkBit True
 bit_rep: Bit -> Bool
 bit_rep (MkBit b) = b
 
---- Moved to here from binary.idr
+||| Bit equality
+export
+bit_eq: Bit -> Bit -> Bool
+bit_eq (MkBit bool1) (MkBit bool2) =
+    bool_eq bool1 bool2
+
 
 ||| Compute the sum bit of two bits
 export
 bit_plus: Bit -> Bit -> Bit
 bit_plus (MkBit b1) (MkBit b2) =
-              MkBit (bool_xor b1 b2)
+    MkBit (bool_xor b1 b2)
 
 
 ||| Compute the carry bit of two bits
