@@ -106,3 +106,32 @@ export
 nat_fact: Nat -> Nat
 nat_fact Z = nat_succ nat_zero
 nat_fact (S n) = nat_mult (S n) (nat_fact n)
+
+||| Return True if n1 <= n2 otherwise False
+export
+nat_le: Nat -> Nat -> Bool
+nat_le Z Z = True
+nat_le (S n) Z = False
+nat_le Z (S n) = True
+nat_le (S n) (S m) = nat_le n m
+
+||| Return True if n1 is strictly less than n2
+export
+nat_lt: Nat -> Nat -> Bool
+nat_lt n1 n2 =
+  bool_and
+    (nat_le n1 n2)
+    (bool_not (nat_eq n1 n2))
+
+||| Return True if n1 is strictly greater than n2 else False
+export
+nat_gt: Nat -> Nat -> Bool
+nat_gt n1 n2 = bool_not (nat_le n1 n2)
+
+||| Return true if n1 >= n2 else False
+export
+nat_ge: Nat -> Nat -> Bool
+nat_ge n1 n2 =
+  bool_or
+    (nat_gt n1 n2)
+    (nat_eq n1 n2)
