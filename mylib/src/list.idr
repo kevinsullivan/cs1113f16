@@ -211,6 +211,9 @@ r6 = ?fill_hole_with_ambiguous_case
 list_sum_squares: List Nat -> Nat
 list_sum_squares = ?list_sum_squares_implementation
 
+-- Hint: write a good set of test cases here
+
+
 ||| Given a list of natural numbers, return a list of Boolean values
 ||| where a Boolean is True if the corresponding number is even and
 ||| False otherwise.
@@ -218,14 +221,20 @@ list_sum_squares = ?list_sum_squares_implementation
 list_nat_ev_bool: List Nat -> List Bool
 list_nat_ev_bool ln = ?your_code_here
 
+-- Hint: write a good set of test cases here
+
+
 ||| Given a list of natural numbers, return the sublist of even numbers
 ||| Example: list_filter_even [5, 4, 3, 2, 1, 4, 2, 0] = [4, 2, 4, 2, 0]
 list_filter_even: List Nat -> List Nat
 list_filter_even = ?list_filter_even_implementation
 
+-- Hint: write a good set of test cases here
 
-||| Given a list of natural numbers, return the sublist of even numbers
-||| Example: list_filter_even [5, 4, 3, 2, 1, 4, 2, 0] = [4, 2, 4, 2, 0]
+
+||| Given a list of Booleans, return the sublist of True ones
+||| Example: list_filter_even [False, False] = Nil
+||| Example: list_filter_even [T, F, T, F] = [T, T]
 list_filter_True: List Bool -> List Bool
 list_filter_True = ?list_filter_true_implementation
 
@@ -241,7 +250,10 @@ br1: List Bool
 br2: List Bool
 
 br1 = list_filter_True b1
+-- expect Nil
+
 br2 = list_filter_True b2
+-- expect [True, True]
 
 -- HOMEWORK ENDS HERE
 
