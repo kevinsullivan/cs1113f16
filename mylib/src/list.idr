@@ -226,9 +226,26 @@ list_filter_even = ?list_filter_even_implementation
 
 ||| Given a list of natural numbers, return the sublist of even numbers
 ||| Example: list_filter_even [5, 4, 3, 2, 1, 4, 2, 0] = [4, 2, 4, 2, 0]
-list_filter_pos: List Nat -> List Nat
-list_filter_pos = ?list_filter_even_implementation
+list_filter_True: List Bool -> List Bool
+list_filter_True = ?list_filter_true_implementation
 
+-- Test code
+b1: List Bool
+b1 = (Cons False (Cons False Nil))  -- [False, False]
+
+b2: List Bool
+b2 = (Cons False (Cons True (Cons False (Cons True Nil))))
+
+
+br1: List Bool
+br2: List Bool
+
+br1 = list_filter_True b1
+br2 = list_filter_True b2
+
+-- HOMEWORK ENDS HERE
+
+-- Higher-order functions (to be discussed soon)
 
 ||| Return the sublist of elements for which a predicate is true
 export
@@ -242,6 +259,22 @@ list_filter predicate (Cons head tail) =
 
 ||| Return the list of elements transformed by a given function
 export
-list_map: (a -> b) -> List a -> List b
+list_map: (fn: a -> b) -> List a -> List b
 list_map func Nil = Nil
 list_map func (Cons head tail) = Cons (func head) (list_map func tail)
+
+||| Return the value obtained by reducing the list using the given
+||| function and identity element.
+
+export
+list_fold_right: (op: a -> a -> a) -> (id: a) -> (l: List a) -> a
+list_fold_right op id Nil = id
+list_fold_right op id (Cons h t) =
+  op h (list_fold_right op id t)
+
+  -- Tests
+
+-- Reduce [1, 2, 3] under addition (with zero as the identity)
+n: Nat
+n = list_fold_right nat_plus nat_zero l''
+-- expect 6
