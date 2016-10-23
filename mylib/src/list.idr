@@ -204,8 +204,8 @@ r6: List Nat
 r6 = ?fill_hole_with_ambiguous_case
 -- expect Nil
 
-||| Given a list of natural numbers return a list of their squares
-||| Example: list_sum_squares Nil = nat_zero
+||| Given a list of natural numbers return the sum of their squares
+||| Example: list_sum_squares Nil = 0
 ||| Example: list_sum_squares [0] = 0
 ||| Example: list_sum_squares [3, 4, 1, 2] = 30
 list_sum_squares: List Nat -> Nat
