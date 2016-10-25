@@ -67,14 +67,6 @@ list_head Nil default = default
 list_head (Cons h t) _ = h
 
 
--- Some test code, to be refactored out later on
-l: List Nat
-l = Nil
-
-l': List Nat
-l' = Cons nat_one (Cons nat_two Nil)
-
-
 ||| Return the tail of the given list, or Nil if the list itself is Nil
 export
 list_tail: List a -> List a
@@ -122,28 +114,36 @@ list_repeat val len =
       (list_repeat val (nat_pred len)))
 
 
+-- Operations that reduce (fold) a list to a scalar
 
 ||| Given a list of nats, return their sum
 list_sum: List Nat -> Nat
 list_sum Nil = nat_zero
-list_sum (Cons h t) = nat_plus (h) (list_sum t)
+list_sum (Cons h t) =
+  nat_plus (h) (list_sum t)
 
 
 ||| Given a list of nats, return their product
 list_prod: List Nat -> Nat
 list_prod Nil = nat_one
-list_prod (Cons h t) = nat_mult (h) (list_prod t)
-
-l'': List Nat
-l'' = (Cons nat_one (Cons nat_two (Cons nat_three Nil)))
-
+list_prod (Cons h t) =
+  nat_mult (h) (list_prod t)
 
 ||| Given a list of nats, return the list with each nat incremented by one
 list_inc: List Nat -> List Nat
 list_inc Nil = Nil
-list_inc (Cons h t) = Cons
-                        (nat_succ h)
-                        (list_inc t)
+list_inc (Cons h t) =
+  Cons
+    (nat_succ h)
+    (list_inc t)
+
+||| Given a list of nats, return the list with each nat incremented by one
+list_map_square: List Nat -> List Nat
+list_map_square Nil = Nil
+list_map_square (Cons h t) =
+  Cons
+    (nat_mult h h)
+    (list_map_square t)
 
 
 ||| Return a list starting with a given nat and descending by 1s to 0
@@ -178,6 +178,101 @@ list_range n =
 export
 list_range_by_to: (n: Nat) -> (b: Nat) -> (t: Nat) -> List Nat
 list_range_by_to n b t = ?fill_this_hole
+-- If you haven't figured out how to solve this problem yet
+-- keep working on it. It's important to be able to solve
+-- problems like this on your own. Ask for help if you need it.
+
+
+||| Given a list of natural numbers return the sum of their squares
+||| Example: list_sum_squares Nil = 0
+||| Example: list_sum_squares [0] = 0
+||| Example: list_sum_squares [3, 4, 1, 2] = 30
+list_sum_squares: List Nat -> Nat
+list_sum_squares Nil = nat_zero
+list_sum_squares (Cons h t) =
+  nat_plus
+    (nat_mult h h)
+    (list_sum_squares t)
+
+
+||| Given a list of natural numbers, return a list of Boolean values
+||| where a Boolean is True if the corresponding number is even and
+||| False otherwise.
+||| Example: list_nat_ev_bool [5,4,3,2,1,0] = [F,T,F,T,F,T]
+list_nat_ev_bool: List Nat -> List Bool
+list_nat_ev_bool Nil = Nil
+list_nat_ev_bool (Cons h t) =
+  ifthenelse
+    (nat_evenb h)
+    (Cons True (list_nat_ev_bool t))
+    (Cons False (list_nat_ev_bool t))
+
+
+||| Given a list of natural numbers, return the sublist of even numbers
+||| Example: list_filter_even [5, 4, 3, 2, 1, 4, 2, 0] = [4, 2, 4, 2, 0]
+list_filter_even: List Nat -> List Nat
+list_filter_even Nil = Nil
+list_filter_even (Cons h t) =
+  ifthenelse
+    (nat_evenb h)
+    (Cons h (list_filter_even t))
+    (list_filter_even t)
+
+
+||| Given a list of Booleans, return the sublist of True ones
+||| Example: list_filter_even [False, False] = Nil
+||| Example: list_filter_even [T, F, T, F] = [T, T]
+list_filter_True: List Bool -> List Bool
+list_filter_True Nil = Nil
+list_filter_True (Cons h t) =
+  ifthenelse
+    h
+    (Cons h (list_filter_True t))
+    (list_filter_True t)
+
+
+-- Higher-order functions involving lists
+
+||| Return the list of elements transformed by a given function
+export
+list_map: (a -> b) -> List a -> List b
+list_map func Nil = Nil
+list_map func (Cons h t) =
+  Cons (func h) (list_map func t)
+
+
+||| Return the value obtained by reducing the list using the given
+||| function and identity element.
+export
+list_fold_right: (op: a -> a -> a) -> (id: a) -> (l: List a) -> a
+list_fold_right op id Nil = id
+list_fold_right op id (Cons h t) =
+  op h (list_fold_right op id t)
+
+
+||| Return the sublist of elements for which a predicate is true
+export
+list_filter: (a -> Bool) -> List a -> List a
+list_filter predicate Nil = Nil
+list_filter predicate (Cons head tail) =
+  ifthenelse
+    (predicate head)
+    (Cons head (list_filter predicate tail))
+    (list_filter predicate tail)
+
+
+-- A few tests, to be refactored out into separate file
+
+-- A few list values to use in test cases
+l: List Nat
+l = Nil
+
+l': List Nat
+l' = Cons nat_one (Cons nat_two Nil)
+
+l'': List Nat
+l'' = (Cons nat_one (Cons nat_two (Cons nat_three Nil)))
+
 
 -- Test cases for list_range_by_to
 r1: List Nat
@@ -204,41 +299,6 @@ r6: List Nat
 r6 = ?fill_hole_with_ambiguous_case
 -- expect Nil
 
-||| Given a list of natural numbers return the sum of their squares
-||| Example: list_sum_squares Nil = 0
-||| Example: list_sum_squares [0] = 0
-||| Example: list_sum_squares [3, 4, 1, 2] = 30
-list_sum_squares: List Nat -> Nat
-list_sum_squares = ?list_sum_squares_implementation
-
--- Hint: write a good set of test cases here
-
-
-||| Given a list of natural numbers, return a list of Boolean values
-||| where a Boolean is True if the corresponding number is even and
-||| False otherwise.
-||| Example: list_nat_ev_bool [5,4,3,2,1,0] = [F,T,F,T,F,T]
-list_nat_ev_bool: List Nat -> List Bool
-list_nat_ev_bool ln = ?your_code_here
-
--- Hint: write a good set of test cases here
-
-
-||| Given a list of natural numbers, return the sublist of even numbers
-||| Example: list_filter_even [5, 4, 3, 2, 1, 4, 2, 0] = [4, 2, 4, 2, 0]
-list_filter_even: List Nat -> List Nat
-list_filter_even = ?list_filter_even_implementation
-
--- Hint: write a good set of test cases here
-
-
-||| Given a list of Booleans, return the sublist of True ones
-||| Example: list_filter_even [False, False] = Nil
-||| Example: list_filter_even [T, F, T, F] = [T, T]
-list_filter_True: List Bool -> List Bool
-list_filter_True = ?list_filter_true_implementation
-
--- Test code
 b1: List Bool
 b1 = (Cons False (Cons False Nil))  -- [False, False]
 
@@ -247,46 +307,19 @@ b2 = (Cons False (Cons True (Cons False (Cons True Nil))))
 
 
 br1: List Bool
-br2: List Bool
-
 br1 = list_filter_True b1
 -- expect Nil
 
+br2: List Bool
 br2 = list_filter_True b2
 -- expect [True, True]
 
--- HOMEWORK ENDS HERE
-
--- Higher-order functions (to be discussed soon)
-
-||| Return the sublist of elements for which a predicate is true
-export
-list_filter: (a -> Bool) -> List a -> List a
-list_filter predicate Nil = Nil
-list_filter predicate (Cons head tail) =
-  ifthenelse
-    (predicate head)
-    (Cons head (list_filter predicate tail))
-    (list_filter predicate tail)
-
-||| Return the list of elements transformed by a given function
-export
-list_map: (fn: a -> b) -> List a -> List b
-list_map func Nil = Nil
-list_map func (Cons head tail) = Cons (func head) (list_map func tail)
-
-||| Return the value obtained by reducing the list using the given
-||| function and identity element.
-
-export
-list_fold_right: (op: a -> a -> a) -> (id: a) -> (l: List a) -> a
-list_fold_right op id Nil = id
-list_fold_right op id (Cons h t) =
-  op h (list_fold_right op id t)
-
-  -- Tests
+-- Reduce [1, 2, 3] under addition (with zero as the identity)
+n1: Nat
+n1 = list_fold_right nat_plus nat_zero l''
+-- expect 6
 
 -- Reduce [1, 2, 3] under addition (with zero as the identity)
-n: Nat
-n = list_fold_right nat_plus nat_zero l''
+n2: Nat
+n2 = list_fold_right nat_mult nat_one l''
 -- expect 6
