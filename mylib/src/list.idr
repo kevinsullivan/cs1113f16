@@ -4,8 +4,7 @@ module list
 -- The length of a list is a nat, so we need to import and export nat
 import public nat
 import ifthenelse
-
-import bit
+import public eq
 
 ||| A polymorphic inductive list data type
 ||| We leave the constructors externally visible for now
@@ -13,6 +12,24 @@ public export
 data List a =
   Nil |
   Cons a (List a)
+
+
+||| An attempt to implement a polymorphic (List a) equality operator.
+||| Two ists are equal if their elements correspond and they are equal.
+||| The problem is that we have no idea what type of elementw wlil be
+||| in a given list, so we don't know what code to use to elements. We
+||| can't fill the hole in this code.
+public export
+list_eq: List a -> List a -> Bool
+list_eq Nil Nil = True
+list_eq Nil (Cons h t) = False
+list_eq (Cons h t) Nil = False
+list_eq (Cons h1 t1) (Cons h2 t2) =
+  bool_and
+    (?eq_hole h1 h2)
+    (list_eq t1 t2)
+
+
 
 ||| A function that returns as a nat the length of a given list
 export
@@ -33,31 +50,6 @@ list_append (Cons head tail) l =
 -- This is the same as: { a: Type } -> List a -> List a -> List a
 
 
-{-
--- First attempt at head
-
-export
-list_head: List a -> a
-list_head Nil = ?list_head_hole
-
-There's no way to fill the hole! We need to return a
-value of whatever type a is, but we don't know what type
-that will be when this function is actually called, and
-when the list it nil, it has no head, so we have no value
-of type a at hand to return. So we're stuck.
--}
-
-
-{-
-What follows is a solution: We pass an additional
-argument, of whatever type a is, to the function, which
-the function returns if the list is nil. This is not an
-ideal solution, because we will have no way of knowing
-whether the list is empty or it actually has that value
-as a head, but it at least gives us a way to complete
-this function definition.
--}
-
 ||| Return the element at the head of the list or
 ||| return the second argument (the "default") if the
 ||| list is empty.
@@ -72,7 +64,6 @@ export
 list_tail: List a -> List a
 list_tail Nil =  Nil
 list_tail (Cons h t) = t
-
 
 
 ||| Return the n'th element of a given list, or a default value
@@ -114,8 +105,6 @@ list_repeat val len =
       (list_repeat val (nat_pred len)))
 
 
--- Operations that reduce (fold) a list to a scalar
-
 ||| Given a list of nats, return their sum
 list_sum: List Nat -> Nat
 list_sum Nil = nat_zero
@@ -137,7 +126,7 @@ list_inc (Cons h t) =
     (nat_succ h)
     (list_inc t)
 
-||| Given a list of nats, return the list with each nat incremented by one
+||| Given a list of nats, return the list with each nat squared
 list_map_square: List Nat -> List Nat
 list_map_square Nil = Nil
 list_map_square (Cons h t) =
@@ -210,6 +199,7 @@ list_nat_ev_bool (Cons h t) =
 
 ||| Given a list of natural numbers, return the sublist of even numbers
 ||| Example: list_filter_even [5, 4, 3, 2, 1, 4, 2, 0] = [4, 2, 4, 2, 0]
+export
 list_filter_even: List Nat -> List Nat
 list_filter_even Nil = Nil
 list_filter_even (Cons h t) =
@@ -222,6 +212,7 @@ list_filter_even (Cons h t) =
 ||| Given a list of Booleans, return the sublist of True ones
 ||| Example: list_filter_even [False, False] = Nil
 ||| Example: list_filter_even [T, F, T, F] = [T, T]
+export
 list_filter_True: List Bool -> List Bool
 list_filter_True Nil = Nil
 list_filter_True (Cons h t) =
@@ -259,67 +250,3 @@ list_filter predicate (Cons head tail) =
     (predicate head)
     (Cons head (list_filter predicate tail))
     (list_filter predicate tail)
-
-
--- A few tests, to be refactored out into separate file
-
--- A few list values to use in test cases
-l: List Nat
-l = Nil
-
-l': List Nat
-l' = Cons nat_one (Cons nat_two Nil)
-
-l'': List Nat
-l'' = (Cons nat_one (Cons nat_two (Cons nat_three Nil)))
-
-
--- Test cases for list_range_by_to
-r1: List Nat
-r1 = list_range_by_to nat_zero nat_one nat_zero
--- expect [0], i.e., (Cons 0 Nil), the list containing just 0
-
-r2: List Nat
-r2 = list_range_by_to nat_three nat_one nat_one
--- expect [3, 2, 1]
-
-r3: List Nat
-r3 = list_range_by_to nat_three nat_two nat_one
--- expect [3, 1]
-
-r4: List Nat
-r4 = list_range_by_to nat_three nat_three nat_one
--- expect [3]
-
-r5: List Nat
-r5 = list_range_by_to nat_one nat_one nat_three
--- expect Nil
-
-r6: List Nat
-r6 = ?fill_hole_with_ambiguous_case
--- expect Nil
-
-b1: List Bool
-b1 = (Cons False (Cons False Nil))  -- [False, False]
-
-b2: List Bool
-b2 = (Cons False (Cons True (Cons False (Cons True Nil))))
-
-
-br1: List Bool
-br1 = list_filter_True b1
--- expect Nil
-
-br2: List Bool
-br2 = list_filter_True b2
--- expect [True, True]
-
--- Reduce [1, 2, 3] under addition (with zero as the identity)
-n1: Nat
-n1 = list_fold_right nat_plus nat_zero l''
--- expect 6
-
--- Reduce [1, 2, 3] under addition (with zero as the identity)
-n2: Nat
-n2 = list_fold_right nat_mult nat_one l''
--- expect 6
