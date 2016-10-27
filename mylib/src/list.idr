@@ -32,7 +32,7 @@ list_eq (Cons h1 t1) (Cons h2 t2) =
     (list_eq t1 t2)
 
 b: Bool
-b = list_eq (Cons nat_zero Nil) (Nil)
+b = list_eq (Cons True Nil) (Nil)
 
 ||| A function that returns as a nat the length of a given list
 export
@@ -254,8 +254,30 @@ list_filter predicate (Cons head tail) =
     (Cons head (list_filter predicate tail))
     (list_filter predicate tail)
 
+||| Example: Implement list_filter_even using list_filter
 list_filter_even': List Nat -> List Nat
 list_filter_even' l = list_filter nat_evenb l
 
+||| Example: Implement list_filter_True using list_filter
 list_filter_True': List Bool -> List Bool
 list_filter_True' l = list_filter bool_id l
+
+
+||| A private-to-this-module helper function for the function
+||| that follows: return the square of a given natural number.
+nat_square: Nat -> Nat
+nat_square n = nat_mult n n
+
+
+||| Example: Implement list_sum_squares using map and fold_right
+list_sum_squares': List Nat -> Nat
+list_sum_squares' l =
+  list_fold_right
+    (nat_plus)
+    (nat_zero)
+    (list_map nat_square l)
+
+t: Nat
+t = list_sum_squares'
+      (Cons nat_three (Cons nat_two (Cons nat_one Nil)))
+-- expect 14

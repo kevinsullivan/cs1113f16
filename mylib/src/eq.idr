@@ -12,6 +12,7 @@ interface Eq a where
 ||| an "include cycle," where this file imports
 ||| bool and bool imports this file. That doesn't
 ||| work and needs to be avoided.
+export
 implementation Eq Bool where
   eq b1 b2 = bool_eq b1 b2
   neq b1 b2 = bool_not (eq b1 b2)
