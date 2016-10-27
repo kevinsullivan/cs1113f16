@@ -4,8 +4,8 @@ import public bool
 
 public export
 interface Eq a where
-    eq : a -> a -> Bool
-    neq : a -> a -> Bool
+    eq: a -> a -> Bool
+    neq: a -> a -> Bool
 
 ||| Implementation of Eq interface for Bool
 ||| We provide this implementation here to avoid

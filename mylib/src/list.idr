@@ -6,6 +6,8 @@ import public nat
 import ifthenelse
 import public eq
 
+import unit
+
 ||| A polymorphic inductive list data type
 ||| We leave the constructors externally visible for now
 public export
@@ -20,16 +22,17 @@ data List a =
 ||| in a given list, so we don't know what code to use to elements. We
 ||| can't fill the hole in this code.
 public export
-list_eq: List a -> List a -> Bool
+list_eq: Eq a => List a -> List a -> Bool
 list_eq Nil Nil = True
 list_eq Nil (Cons h t) = False
 list_eq (Cons h t) Nil = False
 list_eq (Cons h1 t1) (Cons h2 t2) =
   bool_and
-    (?eq_hole h1 h2)
+    (eq h1 h2)
     (list_eq t1 t2)
 
-
+b: Bool
+b = list_eq (Cons nat_zero Nil) (Nil)
 
 ||| A function that returns as a nat the length of a given list
 export
@@ -217,7 +220,7 @@ list_filter_True: List Bool -> List Bool
 list_filter_True Nil = Nil
 list_filter_True (Cons h t) =
   ifthenelse
-    h
+    (bool_id h)
     (Cons h (list_filter_True t))
     (list_filter_True t)
 
@@ -250,3 +253,9 @@ list_filter predicate (Cons head tail) =
     (predicate head)
     (Cons head (list_filter predicate tail))
     (list_filter predicate tail)
+
+list_filter_even': List Nat -> List Nat
+list_filter_even' l = list_filter nat_evenb l
+
+list_filter_True': List Bool -> List Bool
+list_filter_True' l = list_filter bool_id l

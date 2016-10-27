@@ -29,6 +29,7 @@ unit_eq u1 u2 = True
 
 
 ||| Implementation of Eq interface for Unit type
+export
 implementation Eq Unit where
   eq u1 u2 = unit_eq u1 u2
   neq u1 u2 = bool_not (eq u1 u2)
