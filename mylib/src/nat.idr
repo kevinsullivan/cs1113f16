@@ -6,6 +6,7 @@ module nat
 -- Some arithmetic functions return Boolean values; so
 -- clients will need bool, so we'll import it publicly
 import public bool
+import eq
 
 
 ||| The primary data type we export is Nat.
@@ -94,6 +95,12 @@ nat_eq (S n) Z = False
 nat_eq (S n) (S m) = nat_eq n m
 
 
+export
+implementation Eq Nat where
+  eq n m = nat_eq n m
+  neq n m = bool_not (eq n m)
+
+  
 ||| Compute the product of two nats
 export nat_mult: Nat -> Nat -> Nat
 nat_mult Z m = Z
