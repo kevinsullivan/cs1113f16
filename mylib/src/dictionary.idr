@@ -39,9 +39,9 @@ dict_list_lookup: Eq k => List (Pair k v) -> k -> Option v
 dict_list_lookup Nil k = None
 dict_list_lookup (Cons h t) k =
   ifthenelse
-    ?is_k_equal_to_key_of_pair_at_head_of_list
-    ?if_so_return_Some_value
-    ?else_return_result_of_searching_rest_of_list
+    (eq k (pair_key h))
+    (Some (pair_value h))
+    (dict_list_lookup t k)
 
 ||| Function to look up and return the value for a given key if
 ||| there is one. This function requires the ability to decide
@@ -50,5 +50,5 @@ dict_list_lookup (Cons h t) k =
 ||| to be a type for which "eq" is defined, i.e., to be a type for
 ||| which there is an implementation of the "Eq" interface.
 export
-dictionary_lookup: Eq k => Dictionary k v -> (key: k) -> Option v
+dictionary_lookup: Eq k => (dict: Dictionary k v) -> (key: k) -> Option v
 dictionary_lookup (MkDictionary l) k = dict_list_lookup l k
