@@ -52,3 +52,11 @@ dict_list_lookup (Cons h t) k =
 export
 dictionary_lookup: Eq k => (dict: Dictionary k v) -> (key: k) -> Option v
 dictionary_lookup (MkDictionary l) k = dict_list_lookup l k
+
+-- Tests involving empty dictionaries
+
+aDict: Dictionary Nat Nat
+aDict = dictionary_new
+
+aVal: Option Nat
+aVal = dictionary_lookup aDict nat_zero
