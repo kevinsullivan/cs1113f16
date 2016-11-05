@@ -11,8 +11,7 @@ the built-in rules for evaluating expressions, etc. The fact that this
 is a CS1 course, not an upper division or graduate course, imposes a
 need for very careful attention to the ordering of concepts and to
 their presentation and explanation in much greater detail than would
-be necessary in a course like any that would use Pierce's Software
-Foundations book.
+be necessary in a course using Pierce's Software Foundations book.
 
 # How to view this repository
 
