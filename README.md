@@ -13,7 +13,7 @@ need for very careful attention to the ordering of concepts and to
 their presentation and explanation in much greater detail than would
 be necessary in a course using Pierce's Software Foundations book.
 
-# How to view this repository
+## How to view this repository
 
 The key to making sense of this repository is to look at the
 progression of its tagged versions. (On Github, for example, click on
@@ -68,7 +68,7 @@ within bytes), a recursive function to add bytes, through concepts of
 state, expressions and their evaluation, and imperative commands as
 composable state transformers (all implemented in Idris).
 
-# Strategy: Foundations of Imperative Programming as a Major Goal
+## Strategy: Foundations of Imperative Programming as a Major Goal
 
 A goal of the course is to provides students with a foundational
 understanding of imperative programming /before/ throwing them into a
