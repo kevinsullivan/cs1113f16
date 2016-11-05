@@ -28,14 +28,28 @@ areas, while major version changes corresponding to movement from one
 major abstract data type to another (unit and bool to nat, nat to
 list, list to dictionary, etc).
 
-## Language: Idris
+## Strategy: Language = Idris
 
 The course is taught using the functional programming language of the
-Idris proof assistant. I judged Idris to be a better language than Coq
-for a CS1 course. For example, one can turn off the enforcement of
-totality checking, which is useful if one wants to explore ideas of
-generative recursions (e.g., hailstone sequence, or iterated state
-transformations for simulations or games).
+Idris proof assistant. The goal was to have students use a language
+with an extremely clean type system, in which they could do ordinary
+prorgamming, and that would put them on the path to the type-driven
+development of programs and proofs. 
+
+I judged Idris to be a better language than Coq for a CS1 course. For 
+example, one can turn off the enforcement of totality checking, which 
+is useful if one wants to explore ideas of generative recursions (e.g., 
+hailstone sequence, or iterated state transformations for simulations 
+or games).
+
+I have also found the ability to give students partial programs with
+"holes" to fill in to be incredibly useful. My exams, for instance, are
+Idris programs with definitions that have lots of holes to fill in. 
+That one can ask the environment about the type of each hole, is very
+useful, among other things. This mechanism also supports a beautiful
+narrative around top-down functional decomposition as an engineering
+design strategy for program implementation.
+
 
 ## Strategy: A Sequence of Major Abstract Data Types
 
