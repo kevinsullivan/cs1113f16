@@ -14,9 +14,17 @@ import ifthenelse
 
 ||| We first define a simple abstract data type the
 ||| values of which are "variables capable of having
-||| associated values of type t.""
-public export
+||| associated values of type t."" We make the Variable
+||| type public but make the constructor private to this
+||| module.
+export
 data Variable t = MkVariable Nat
+
+
+||| Provide a public function to create a variable
+export
+variable_new: Nat -> Variable Nat
+variable_new n = MkVariable n
 
 
 -- Examples of variables, with convenient names (refactor)
