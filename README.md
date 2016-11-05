@@ -18,15 +18,18 @@ be necessary in a course using Pierce's Software Foundations book.
 The key to making sense of this repository is to look at the
 progression of its tagged versions. (On Github, for example, click on
 "Master" for the master branch, then "Tags." Select a tagged
-version. Doing this through the sequence of versions will reveal the
-ordering of concepts as we spent two months building our own core
-library of data types, from unit and bool through state, expression,
-and command. The first version in the repo picks up a few lectures
-into the course. From there, minor version number changes roughly
-match daily lectures and specific concepts within broader subject
-areas, while major version changes corresponding to movement from one
-major abstract data type to another (unit and bool to nat, nat to
-list, list to dictionary, etc).
+version, then browse the selected version of the code base.) Doing 
+this through the sequence of versions will reveal the ordering of 
+concepts as we spent two months building our own core library of 
+data types, from unit and bool through state, expression, and command. 
+The first version in the repo picks up a few lectures into the course. 
+From there, minor version number changes roughly match daily lectures 
+and specific concepts within broader data-type-focused areas, while 
+major version changes corresponding to movement from one major abstract 
+data type to another (unit and bool to nat, nat to list, list to 
+dictionary, etc). Note that some versions of some files contain more
+or less extensive lecture notes, which do not necessarily remain in
+later versions of the files.
 
 ## Strategy: Language = Idris
 
