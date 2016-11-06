@@ -56,21 +56,25 @@ And stay tuned for future episodes.
 
 ## How to view this repository
 
-The key to making sense of this repository is to look at the
-progression of its tagged versions. (On Github, for example, click on
-"Master" for the master branch, then "Tags." Select a tagged
-version, then browse the selected version of the code base.) Doing 
-this through the sequence of versions will reveal the ordering of 
-concepts as we spent two months building our own core library of 
-data types, from unit and bool through state, expression, and command. 
-The first version in the repo picks up a few lectures into the course. 
+This repository presents a sequence of tagged versions of the
+prelude library that our class is building. On Github, click on
+"Master" for the master branch, then "Tags" to select a tagged
+version. You will then see the files from that version when you
+browse the directories on Github. 
+
+Going through the sequence of versions in order will animate the
+introduction of concepts over the two months we spent building our 
+prelude library.
+
+The first version picks up just a few lectures into the course. 
 From there, minor version number changes roughly match daily lectures 
-and specific concepts within broader data-type-focused areas, while 
-major version changes corresponding to movement from one major abstract 
-data type to another (unit and bool to nat, nat to list, list to 
-dictionary, etc). Note that some versions of some files contain more
-or less extensive lecture notes, which do not necessarily remain in
-later versions of the files.
+and specific concepts (such as programming mechanisms) within broader 
+data-type-focused areas. Major version changes corresponding to 
+transitions from one major abstract data type to another (unit and 
+bool to nat, nat to list, list to dictionary, to state, etc). Note 
+that some versions of some files contain more or less extensive 
+lecture notes, and that in general these notes disappear from later
+versions to keep the code clean. 
 
 ## Strategy: Language = Idris
 
