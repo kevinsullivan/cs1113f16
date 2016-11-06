@@ -1,17 +1,39 @@
 # CS1 Through Type Theory
 
-This repository records the progression of my course, informally
-called "CS1 Through Type Theory" at the University of Virginia, Fall
-2016. The driving philosophy of the course is that we build every
-concept before using it, starting with most minimal of all types, unit
-and bool. The only elements we use without building them ourselves are
-those provided by the core logic of the proof assistant we're using,
-including the ability to define data and function types and values,
-the built-in rules for evaluating expressions, etc. The fact that this
-is a CS1 course, not an upper division or graduate course, imposes a
-need for very careful attention to the ordering of concepts and to
-their presentation and explanation in much greater detail than would
-be necessary in a course using Pierce's Software Foundations book.
+This repository records the progression of my CS1 course at UVa, 
+Fall 2016. I informally call it "A Constructive Approach to CS1" 
+or "CS1 Through Type Theory." With the students as partners it 
+constructs, starting from the core logic, (1) a standard prelude 
+of data type definitions for functional programming, along with 
+(2) a model of imperative programming, including (a) variable, 
+expression, and command abstract data types, and (b) evaluation
+functions for expressions and commands.
+
+The design principle for the progression of ideas is that it should
+be "constructive," always building on stuff already in the bag (albeit
+sometimes with holes).
+
+We build through a progression of abstract data types, comprising 
+data type definitions and the definitions of associatad functions, 
+variables, etc., within modules. We start with unit and bool types
+and run up through dictionaries implemented using lists. A bit past 
+2/3 of the way through the course we encounter state and imperative
+commands. 
+
+At that point, we start to work with Python as well as in Idris. Far
+from "Hello World!", the first program students see animates provides
+a demonstration of the evaluation and effects of assignment commands
+in an imperative language. 
+
+The that this is a CS1 course, not an upper division or graduate 
+course, imposes a need for very careful attention to the ordering 
+and explication of concepts, from programming language mechanisms 
+to software design concepts to functional and imperative paradigms. 
+
+By iterating through the tagged versions of this repository, you
+will animate the evolution of a simple Idris prelude library that 
+the class and I built, starting from nothing then going to unit,
+bool, and all the rest.
 
 ## How to view this repository
 
