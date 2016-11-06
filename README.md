@@ -13,7 +13,7 @@ based on this library, based on concepts of state, the syntax of,
 and the evaluation of expressions and imperative commands. It's
 at this point that we bring in Python to explore fundamentals of
 imperative programming. We start not with "Hello World!", for
-example, but with programs that simple create state and see the
+example, but with programs that simply create state and see the
 effects of assignment operations in action. (We do introduce the 
 Python print statement here, as well, for the first time giving
 students a capability that we haven't already built ourselves. 
