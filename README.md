@@ -6,17 +6,17 @@ or "CS1 Through Type Theory." It draws on lessons from Pierce's
 Software Foundations. With  students it constructs step by step,
 starting from the core logic,  a "standard prelude" of data types
 for functional programming (unit, bool, byte, nat, list a, etc).
+And then, about 2/3 of the way through the semester, it builds a 
+simple imperative language using on this library, introducing 
+abstract data types for state, and the syntax and evaluation of,
+expressions that include variables and imperative commands. 
 
-About 2/3 of the way through the semester, again channeling B.
-Pierce's pioneering work, it builds a simple imperative language 
-based on this library, based on concepts of state, the syntax of,
-and the evaluation of expressions and imperative commands. It's
-at this point that we bring in Python to explore fundamentals of
+At this point we also bring in Python to explore fundamentals of
 imperative programming. We start not with "Hello World!", for
 example, but with programs that simply create state and see the
-effects of assignment operations in action. (We do introduce the 
-Python print statement here, as well, for the first time giving
-students a capability that we haven't already built ourselves. 
+effects of assignment operations in action. (We introduce the 
+Python print statement here, for the first time in the class 
+giving students a capability we didn't build ourselves. 
 
 The progression of concepts and mechanisms is "constructive" (in 
 the math/logic sense). No ideas or capabilities are used in the
