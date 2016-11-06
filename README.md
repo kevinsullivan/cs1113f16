@@ -3,20 +3,25 @@
 This repository records the progression of my CS1 course at UVa, 
 Fall 2016. I informally call it "A Constructive Approach to CS1" 
 or "CS1 Through Type Theory." It draws on lessons from Pierce's 
-Software Foundations. With  students it constructs step by step,
-starting from the core logic,  a "standard prelude" of data types
+Software Foundations. With students it first constructs, step by 
+step, starting from nothing but the core constructive logic of
+Idris,  a "standard library" or "prelude" of the usual data types 
 for functional programming (unit, bool, byte, nat, list a, etc).
-And then, about 2/3 of the way through the semester, it builds a 
-simple imperative language using on this library, introducing 
-abstract data types for state, and the syntax and evaluation of,
-expressions that include variables and imperative commands. 
+About 2/3 of the way through the semester, it builds a simple 
+imperative language using this library, introducing types for 
+state (variable -> value), and the syntax and evaluation of,
+both Boolean and arithmetic expressions and imperative commands
+(skip, assignment, ifthenelse, while, etc). That Idris allows for
+non-enforcement of totality is beneficial here, as otherwise it
+would not be possible to write a semantic evaluator as a function. 
 
-At this point we also bring in Python to explore fundamentals of
-imperative programming. We start not with "Hello World!", for
-example, but with programs that simply create state and see the
-effects of assignment operations in action. (We introduce the 
-Python print statement here, for the first time in the class 
-giving students a capability we didn't build ourselves. 
+At this point we also bring in Python to see how the fundamentals 
+of imperative programming play out in an industrial language. We 
+start decidedly *not* with "Hello World!" but with programs that 
+create state and perform assignment operations. (We introduce the 
+Python print statement here, for the first time giving students a 
+capability that they haven't built entirely by themselves, for 
+ease of inspecting program state.) 
 
 The progression of concepts and mechanisms is "constructive" (in 
 the math/logic sense). No ideas or capabilities are used in the
