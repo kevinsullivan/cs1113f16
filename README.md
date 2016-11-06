@@ -2,38 +2,57 @@
 
 This repository records the progression of my CS1 course at UVa, 
 Fall 2016. I informally call it "A Constructive Approach to CS1" 
-or "CS1 Through Type Theory." With the students as partners it 
-constructs, starting from the core logic, (1) a standard prelude 
-of data type definitions for functional programming, along with 
-(2) a model of imperative programming, including (a) variable, 
-expression, and command abstract data types, and (b) evaluation
-functions for expressions and commands.
+or "CS1 Through Type Theory." It draws on lessons from Pierce's 
+Software Foundations. With  students it constructs step by step,
+starting from the core logic,  a "standard prelude" of data types
+for functional programming (unit, bool, byte, nat, list a, etc).
 
-The design principle for the progression of ideas is that it should
-be "constructive," always building on stuff already in the bag (albeit
-sometimes with holes).
+About 2/3 of the way through the semester, again channeling B.
+Pierce's pioneering work, it builds a simple imperative language 
+based on this library, based on concepts of state, the syntax of,
+and the evaluation of expressions and imperative commands. It's
+at this point that we bring in Python to explore fundamentals of
+imperative programming. We start not with "Hello World!", for
+example, but with programs that simple create state and see the
+effects of assignment operations in action. (We do introduce the 
+Python print statement here, as well, for the first time giving
+students a capability that we haven't already built ourselves. 
 
-We build through a progression of abstract data types, comprising 
-data type definitions and the definitions of associatad functions, 
-variables, etc., within modules. We start with unit and bool types
-and run up through dictionaries implemented using lists. A bit past 
-2/3 of the way through the course we encounter state and imperative
-commands. 
+The progression of concepts and mechanisms is "constructive" (in 
+the math/logic sense). No ideas or capabilities are used in the
+first 2/3 of course that we don't build ourselves. We started
+with the idea that there are (data and function) (types and values).
+That's a two-by-two. 
 
-At that point, we start to work with Python as well as in Idris. Far
-from "Hello World!", the first program students see animates provides
-a demonstration of the evaluation and effects of assignment commands
-in an imperative language. 
+We build through a progression of abstract data type modules, each
+comprising definitions of data and function types and values. We 
+start with unit and bool types and run up through dictionaries 
+implemented using lists and finally state and commands. 
+
+State and commands come a little past 2/3 of the way through the 
+semester. At that point, we bring in Python and guide  students
+through the language with what we've learned in the foundational
+part of the class to understand it very rapidly. The basic data 
+types of Python (variables, tuples, dictionaries, etc.), and the
+concept of commands as compositions of state transformers. 
 
 The that this is a CS1 course, not an upper division or graduate 
 course, imposes a need for very careful attention to the ordering 
 and explication of concepts, from programming language mechanisms 
 to software design concepts to functional and imperative paradigms. 
+The contribution of this class, if there is one, is  the analysis 
+and design to produce the specific progression of ideas that you'll 
+find here in this repo.
 
 By iterating through the tagged versions of this repository, you
 will animate the evolution of a simple Idris prelude library that 
-the class and I built, starting from nothing then going to unit,
-bool, and all the rest.
+the class and I built. As of this writing (November 3, 2016), we
+just turned the corner to the imperative topic. For one lecture, 
+eschewing Idris programming but first the first time opening an
+online Python REPL, we just talked about state (variable -> value),
+commands (state -> state), the assignment command in particular. 
+
+And stay tuned for future episodes.
 
 ## How to view this repository
 
