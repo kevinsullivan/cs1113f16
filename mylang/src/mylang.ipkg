@@ -1,0 +1,7 @@
+package mylang
+
+modules = command, variable
+
+opts = "--nobasepkgs --noprelude --nobuiltins"
+
+pkgs = mylib
