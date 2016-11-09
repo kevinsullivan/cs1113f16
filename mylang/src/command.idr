@@ -2,6 +2,7 @@ module command
 
 import variable
 import nat
+import expression
 
 -----------------------------------------------------
 ----------------- SYNTAX ----------------------------
@@ -11,5 +12,5 @@ import nat
 public export
 data Command =
   Skip |
-  Assign Variable Nat |
+  Assign Variable Expr |
   Seq Command Command
