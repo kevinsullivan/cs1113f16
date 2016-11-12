@@ -17,6 +17,19 @@ public export
 Z: Variable
 Z = variable_new nat_two
 
+-- Now we can also declare variable that
+-- to which we will assign (associate) Bool values
+
+A: Variable Bool
+A = MkVariable nat_zero
+
+B: Variable Bool
+B = MkVariable nat_one
+
+C: Variable Bool
+C = MkVariable nat_two
+
+
 -- Tests of bool_eq
 
 b1: Bool
