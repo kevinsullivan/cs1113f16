@@ -80,7 +80,7 @@ st = state_init
 
 --- override: result function like input but maps V to True
 st': State
-st' = override_state_bool st V True
+st' = state_override_bool st V True
 
 --- a Nat Variable with a nice name
 N: Variable Nat
@@ -88,4 +88,4 @@ N = variable_new nat_zero
 
 --- Now create state with V = True and N = nat_one.
 st'': State
-st'' = override_state_nat st' N nat_one
+st'' = state_override_nat st' N nat_one

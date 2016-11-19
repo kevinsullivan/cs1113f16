@@ -35,7 +35,7 @@ CommandEval: Command -> State -> State
 -- Evaluating the skip command in a state st returns st unchanged
 CommandEval Skip             st  = st
 -- Evaluating an assignment v = e in state st returns the overridden state
-CommandEval (NatAssign v e)  st  = override_state_nat st v (natExprEval e st)
+CommandEval (NatAssign v e)  st  = state_override_nat st v (natExprEval e st)
 -- Evaluating an assignment v = e in state st returns the overridden state
 CommandEval (BoolAssign v e) st  =?bassn_hole
 -- Evaluating IfThenElse command reduces to evaluating true or false branch

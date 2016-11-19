@@ -103,15 +103,15 @@ assignement functions within the given state.
 
 ||| Override the Bool assignment function in the state
 export
-override_state_bool: State -> (Variable Bool) -> Bool -> State
-override_state_bool (MkState bs ns) var val =
+state_override_bool: State -> (Variable Bool) -> Bool -> State
+state_override_bool (MkState bs ns) var val =
   MkState (override_t bs var val) (ns)
 
 
 ||| Override the Nat assignment function in the state
 export
-override_state_nat: State -> (Variable Nat) -> Nat -> State
-override_state_nat (MkState bs ns) var val =
+state_override_nat: State -> (Variable Nat) -> Nat -> State
+state_override_nat (MkState bs ns) var val =
   MkState (bs) (override_t ns var val)
 
 

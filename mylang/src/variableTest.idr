@@ -6,28 +6,28 @@ import nat
 -- A few test cases for var_eq (refactor)
 
 public export
-X: Variable
+X: Variable Nat
 X = variable_new nat_zero
 
 public export
-Y: Variable
+Y: Variable Nat
 Y = variable_new nat_one
 
 public export
-Z: Variable
+Z: Variable Nat
 Z = variable_new nat_two
 
 -- Now we can also declare variable that
 -- to which we will assign (associate) Bool values
 
 A: Variable Bool
-A = MkVariable nat_zero
+A = variable_new nat_zero
 
 B: Variable Bool
-B = MkVariable nat_one
+B = variable_new nat_one
 
 C: Variable Bool
-C = MkVariable nat_two
+C = variable_new nat_two
 
 
 -- Tests of bool_eq
