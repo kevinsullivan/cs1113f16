@@ -32,26 +32,53 @@ data Command =
 ||| an imperative program. (We aren't considering effects, such as I/O).
 export
 CommandEval: Command -> State -> State
+
 -- Evaluating the skip command in a state st returns st unchanged
-CommandEval Skip             st  = st
+CommandEval Skip  st  =
+    st
+
 -- Evaluating an assignment v = e in state st returns the overridden state
-CommandEval (NatAssign v e)  st  = state_override_nat st v (natExprEval e st)
+CommandEval (NatAssign v e)  st  =
+    state_override_nat
+    st
+    v
+    (natExprEval e st)
+
 -- Evaluating an assignment v = e in state st returns the overridden state
-CommandEval (BoolAssign v e) st  =?bassn_hole
+CommandEval (BoolAssign v e) st  =
+    state_override_bool
+    st
+    v
+    (boolExprEval e st)
+
 -- Evaluating IfThenElse command reduces to evaluating true or false branch
 CommandEval (IfThenElse cond tcmd fcmd) st =
   ifthenelse
-    (?cond_hole)
-    (?if_true_hole)
-    (?if_false_hole)
+    (boolExprEval cond st)
+    (CommandEval tcmd st)
+    (CommandEval fcmd st)
+
 -- Evaluating a While does nothing if the condition is False
 -- Otherwise it repeats the while loop in the state produced by
 -- executing the body of the command in the start at the start
-CommandEval (While cond cmd)  st =
+CommandEval (While cond cmd) st =
   ifthenelse
-    (?cond_hole)
-    (CommandEval (While cond cmd) (CommandEval cmd st))
-    (?while_false_hole)
+    (boolExprEval
+        cond
+        st)
+    (CommandEval
+        (While cond cmd)
+        (CommandEval
+            cmd
+            st))
+    (st)
+
+
 -- Evaluating a sequential composition evaluates the second command
--- in the state produce by evaluating the first in the given state st
-CommandEval (Seq c1 c2)       st  = ?seq_hole
+-- in the state produceD by evaluating the first in the given state st
+CommandEval (Seq c1 c2) st  =
+    (CommandEval
+        c2
+        (CommandEval
+            c1
+            st))

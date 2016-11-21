@@ -23,10 +23,10 @@ State = (Variable -> Nat)
 ||| Return an initial state mapping all variables to zero.
 -- A State *is* a function! We need the value of state_init
 -- to be a function. Here's notation for "anonymous functions."
+
 export
 state_init: State
-state_init =
-  \v: Variable => nat_zero
+state_init = \v: Variable => nat_zero
 -- the value of state_init is a function that takes one argument,
 -- v, of type Variable and that always returns nat_zero.
 
@@ -52,3 +52,6 @@ is a function that, if given the variable being overridden, returns
 the new value, and that otherwise just applies the old state function
 to find the value of the variable in the original state.
 -}
+
+-- this file may have been saved too late from buffer into a newer
+-- version of the rest of the system
