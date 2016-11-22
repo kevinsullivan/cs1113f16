@@ -2,6 +2,7 @@ module stateTest
 
 import state
 import variable
+import nat
 
 
 
@@ -18,8 +19,8 @@ import variable
 -- variable #2 (MkVariable nat_two), which we now want to
 -- map to have one as its corresponding value. We can use
 -- override to produce the desired new state like this:
-nat_state_new: t_state Nat
-nat_state_new = override nat_state_init Z nat_one
+nat_state_new: StateT Nat
+nat_state_new = state_override_nat nat_state_init Z nat_one
 
 -- Now in this *new* state, Variable #2 has the value one,
 -- where in the init state it had value zero.
