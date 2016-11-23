@@ -107,19 +107,6 @@ st'''': State
 st'''' = CommandEval sumOneToFive init_state
 
 
--- Here's a version of the whole program all in one expression
-allInOne_sumOneToFive: Command
-allInOne_sumOneToFive =
-    Seq
-    (NatAssign X (NatLitExpr (nat_succ (nat_succ nat_three))))
-    (Seq
-        (NatAssign Y (NatLitExpr nat_zero))
-        (While
-            (BoolNeqExpr (NatVarExpr X) (NatLitExpr nat_zero))
-            (Seq
-                (NatAssign Y (NatPlusExpr (NatVarExpr Y) (NatVarExpr X)))
-                (NatAssign X (NatMinusExpr (NatVarExpr X) (NatLitExpr nat_one))))))
-
 -----------------------------------------------------
 -------- separate examples of other commands --------
 -----------------------------------------------------
