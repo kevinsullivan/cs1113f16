@@ -95,12 +95,12 @@ nat_eq (S n) Z = False
 nat_eq (S n) (S m) = nat_eq n m
 
 
-export
+public export
 implementation Eq Nat where
   eq n m = nat_eq n m
   neq n m = bool_not (eq n m)
 
-  
+
 ||| Compute the product of two nats
 export nat_mult: Nat -> Nat -> Nat
 nat_mult Z m = Z
