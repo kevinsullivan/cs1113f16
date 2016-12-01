@@ -20,12 +20,15 @@ Z = variable_new nat_two
 -- Now we can also declare variable that
 -- to which we will assign (associate) Bool values
 
+public export
 A: Variable Bool
 A = variable_new nat_zero
 
+public export
 B: Variable Bool
 B = variable_new nat_one
 
+public export
 C: Variable Bool
 C = variable_new nat_two
 
