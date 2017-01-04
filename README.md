@@ -37,27 +37,29 @@ implemented using lists and finally state and commands.
 State and commands come a little past 2/3 of the way through the 
 semester. At that point, we bring in Python and guide  students
 through the language with what we've learned in the foundational
-part of the class to understand it very rapidly. The basic data 
+part of the class to understand it very rapidly: the basic data 
 types of Python (variables, tuples, dictionaries, etc.), and the
 concept of commands as compositions of state transformers. 
 
 The that this is a CS1 course, not an upper division or graduate 
 course, imposes a need for very careful attention to the ordering 
 and explication of concepts, from programming language mechanisms 
-to software design concepts to functional and imperative paradigms. 
-The contribution of this class, if there is one, is  the analysis 
-and design to produce the specific progression of ideas that you'll 
-find here in this repo.
+to software design concepts to functional and imperative paradigms,
+and careful separation of computation from effects. 
+
+The contribution of this class, if there is one, is the analysis 
+and design work, validated through several offerings of this class,
+to produce the specific progression of ideas that you'll find in 
+this repo.
 
 By iterating through the tagged versions of this repository, you
 will animate the evolution of a simple Idris prelude library that 
-the class and I built. As of this writing (November 3, 2016), we
-just turned the corner to the imperative topic. For one lecture, 
-eschewing Idris programming but first the first time opening an
-online Python REPL, we just talked about state (variable -> value),
-commands (state -> state), the assignment command in particular. 
-
-And stay tuned for future episodes.
+the class and I built, followed by the construction of a simple
+imperative language. A class project required the extension of the
+language to support unsigned integer arithmetic (in limited form)
+based on our previously implemented Byte8 type and the algorithm
+we implemented (based on half- and full-adders) to do addition of
+natural numbers represented as 8-bit bytes.
 
 ## How to view this repository
 
